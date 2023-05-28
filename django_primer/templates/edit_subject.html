@@ -2,14 +2,14 @@
 <html>
 	<head>
 		<meta charset="utf-8" />
-		<title>Главная</title>
+		<title>Редактор предметов</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 	</head>
 	<body>
         <div class="container">
-            <h1 style="text-align:center;">Успеваемость студентов</h1>
+            <h1 style="text-align:center;">Редактор предметов</h1>
 
             <form style="text-align:center;">
                 <button class="btn"><a href="{% url 'home' %}">
@@ -29,24 +29,25 @@
                 </a></button>
             </form><br>
 
+
+            <form method="post">
+                {% csrf_token %}
+                {{ form.name }}<br>
+                <button type="submit" class="btn btn-success">Добавить предмет</button>
+            </form>
+
             <table class="table table-striped">
                 <thead>
                 <tr>
-                  <th>#</th>
-                  <th>ФИО</th>
-                    {% for subject in subjects %}
-                      <th>{{subject}}</th>
-                    {% endfor %}
+                    <th>#</th>
+                    <th>Предмет</th>
                 </tr>
                 </thead>
                 <tbody>
-                    {% for statistics in student_statistics %}
+                    {% for subject in subjects %}
                         <tr>
-                            <th scope="row">{{statistics.student.id}}</th>
-                            <td>{{statistics.student.fio}}</td>
-                             {% for score in statistics.scores %}
-                                <td>{{score}}</td>
-                              {% endfor %}
+                            <th scope="row">{{subject.id}}</th>
+                            <td>{{subject.name}}</td>
                         </tr>
                     {% endfor %}
                 </tbody>

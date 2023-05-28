@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Редактор оценок</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+	</head>
+	<body>
+        <div class="container">
+            <h1 style="text-align:center;">Редактор оценок</h1>
+
+            <form style="text-align:center;">
+                <button class="btn">
+                    <a href="{% url 'home' %}">
+                        Главная
+                    </a>
+                </button>
+
+                <button class="btn">
+                    <a href="{% url 'edit_evaluations' %}">
+                        Редактор оценок
+                    </a>
+                </button>
+
+                <button class="btn">
+                    <a href="{% url 'edit_subjects' %}">
+                        Редактор предметов
+                    </a>
+                </button>
+
+                <button class="btn">
+                    <a href="{% url 'edit_students' %}">
+                        Редактор студентов
+                    </a>
+                </button>
+            </form><br>
+
+
+            <form method="post">
+                {% csrf_token %}
+                {{ form.student }}<br>
+                {{ form.subject }}<br>
+                {{ form.value }}<br>
+                <button type="submit" class="btn btn-success">Добавить оценку</button>
+            </form>
+
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>ФИО</th>
+                    <th>Предмет</th>
+                    <th>Оценка</th>
+                </tr>
+                </thead>
+                <tbody>
+                    {% for score in students_scores %}
+                        <tr>
+                            <th scope="row">{{score.id}}</th>
+                            <td>{{score.student.fio}}</td>
+                            <td>{{score.subject.name}}</td>
+                            <td>{{score.value}}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+	</body>
+</html>
