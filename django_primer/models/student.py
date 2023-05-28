@@ -13,3 +13,6 @@ class Student(models.Model):
     @property
     def fio(self):
         return f'{self.name} {self.surname}'
+
+    def __str__(self):
+        return f'{self.name} {self.surname}'
