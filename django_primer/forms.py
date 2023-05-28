@@ -52,6 +52,9 @@ class ScoreForm(ModelForm):
             }),
             "value": NumberInput(attrs={
                 'class': 'form-control',
-                'placeholder': 'Введите оценку'
+                'placeholder': 'Введите оценку',
+                'step': 1,
+                'max': 5,
+                'min': 1,
             }),
         }
