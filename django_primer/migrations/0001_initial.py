@@ -33,13 +33,13 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Score',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False)),
                 ('value', models.FloatField()),
                 ('student', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='django_primer.student')),
                 ('subject', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='django_primer.subject')),
             ],
             options={
-                'unique_together': {('student', 'subject', 'value')},
+                'unique_together': {('student', 'subject')},
             },
         ),
     ]
