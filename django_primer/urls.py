@@ -16,9 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from .views import IndexView
+from .views import IndexView, EditSubject, EditEvaluations, EditStudent
 
 urlpatterns = [
-    path('', IndexView.as_view()),
+    path('', IndexView.as_view(), name='home'),
     path('admin/', admin.site.urls),
+    path('edit_students', EditStudent.as_view(), name='edit_students'),
+    path('edit_subjects', EditSubject.as_view(), name='edit_subjects'),
+    path('edit_evaluations', EditEvaluations.as_view(), name='edit_evaluations'),
 ]
