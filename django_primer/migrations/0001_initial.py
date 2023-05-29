@@ -27,7 +27,7 @@ class Migration(migrations.Migration):
                 ('email', models.EmailField(max_length=254)),
             ],
             options={
-                'unique_together': {('id', 'name', 'surname')},
+                'unique_together': {('name', 'surname')},
             },
         ),
         migrations.CreateModel(

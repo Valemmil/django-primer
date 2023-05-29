@@ -8,7 +8,7 @@ class Student(models.Model):
     email = models.EmailField(null=False)
 
     class Meta:
-        unique_together = (('id', 'name', 'surname'),)
+        unique_together = (('name', 'surname'),)
 
     @property
     def fio(self):
