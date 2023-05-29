@@ -1,57 +1,38 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="utf-8" />
-		<title>Редактор предметов</title>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-	</head>
-	<body>
-        <div class="container">
-            <h1 style="text-align:center;">Редактор предметов</h1>
+{% extends 'base.html' %}
 
-            <form style="text-align:center;">
-                <button class="btn"><a href="{% url 'home' %}">
-                    Главная
-                </a></button>
+{% block title %}
+Редактор предметов
+{% endblock %}
 
-                <button class="btn"><a href="{% url 'edit_evaluations' %}">
-                    Редактор оценок
-                </a></button>
+{% block title2 %}
+Редактор предметов
+{% endblock %}
 
-                <button class="btn"><a href="{% url 'edit_subjects' %}">
-                    Редактор предметов
-                </a></button>
+{% block body %}
+<form method="post">
+    {% csrf_token %}
+    {{ form.name }}<br>
+    <button type="submit" class="btn btn-success">Добавить предмет</button>
+</form><br>
 
-                <button class="btn"><a href="{% url 'edit_students' %}">
-                    Редактор студентов
-                </a></button>
-            </form><br>
+<button class="btn"><a href="{% url 'delete_subjects' %}">
+    Удаление предмета</a>
+</button>
 
-
-            <form method="post">
-                {% csrf_token %}
-                {{ form.name }}<br>
-                <button type="submit" class="btn btn-success">Добавить предмет</button>
-            </form>
-
-            <table class="table table-striped">
-                <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Предмет</th>
-                </tr>
-                </thead>
-                <tbody>
-                    {% for subject in subjects %}
-                        <tr>
-                            <th scope="row">{{subject.id}}</th>
-                            <td>{{subject.name}}</td>
-                        </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
-	</body>
-</html>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>#</th>
+        <th>Предмет</th>
+    </tr>
+    </thead>
+    <tbody>
+        {% for subject in subjects %}
+            <tr>
+                <th scope="row">{{subject.id}}</th>
+                <td>{{subject.name}}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

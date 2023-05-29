@@ -1,50 +1,37 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="utf-8" />
-		<title>Редактор студентов</title>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-	</head>
-	<body>
-        <div class="container">
-            <h1 style="text-align:center;">Редактор студентов</h1>
+{% extends 'base.html' %}
 
-            <form style="text-align:center;">
-                <button class="btn"><a href="{% url 'home' %}">
-                    Главная
-                </a></button>
+{% block title %}
+Редактор студентов
+{% endblock %}
 
-                <button class="btn"><a href="{% url 'edit_evaluations' %}">
-                    Редактор оценок
-                </a></button>
+{% block title2 %}
+Редактор студентов
+{% endblock %}
 
-                <button class="btn"><a href="{% url 'edit_subjects' %}">
-                    Редактор предметов
-                </a></button>
-
-                <button class="btn"><a href="{% url 'edit_students' %}">
-                    Редактор студентов
-                </a></button>
-            </form><br>
-
-
+{% block body %}
             <form method="post">
                 {% csrf_token %}
                 {{ form.name }}<br>
                 {{ form.surname }}<br>
                 {{ form.email }}<br>
                 <button type="submit" class="btn btn-success">Добавить студента</button>
-            </form>
+            </form><br>
+
+            <button class="btn"><a href="{% url 'delete_students' %}">
+                Удаление студента</a>
+            </button>
+
+            <button class="btn">
+                <a href="{% url 'redact_students' %}">Изменение студента</a>
+            </button>
 
             <table class="table table-striped">
                 <thead>
                 <tr>
                     <th>#</th>
-                    <th>ФИО</th>
-                    <th>Предмет</th>
-                    <th>Оценка</th>
+                    <th>Имя</th>
+                    <th>Фамилия</th>
+                    <th>Почта</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -58,6 +45,4 @@
                     {% endfor %}
                 </tbody>
             </table>
-        </div>
-	</body>
-</html>
+{% endblock %}
