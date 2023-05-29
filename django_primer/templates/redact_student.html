@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Редактор студентов
+{% endblock %}
+
+{% block title2 %}
+Редактор студентов
+{% endblock %}
+
+{% block body %}
+            <form method="post">
+                {% csrf_token %}
+                {{ form.name }}<br>
+                {{ form.surname }}<br>
+                {{ form.email }}<br>
+                <button type="submit" class="btn btn-warning">Изменить студента</button>
+            </form><br>
+
+            <button class="btn"><a href="{% url 'edit_students' %}">
+                Добавление студента</a>
+            </button>
+
+            <button class="btn">
+                <a href="{% url 'delete_students' %}">Удаление студента</a>
+            </button>
+
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Имя</th>
+                    <th>Фамилия</th>
+                    <th>Почта</th>
+                </tr>
+                </thead>
+                <tbody>
+                    {% for student in students %}
+                        <tr>
+                            <th scope="row">{{student.id}}</th>
+                            <td>{{student.name}}</td>
+                            <td>{{student.surname}}</td>
+                            <td>{{student.email}}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+{% endblock %}

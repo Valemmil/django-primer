@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Редактор предметов
+{% endblock %}
+
+{% block title2 %}
+Редактор предметов
+{% endblock %}
+
+{% block body %}
+<form method="post">
+    {% csrf_token %}
+    {{ form.name }}<br>
+    <button type="submit" class="btn btn-danger">Удалить предмет</button>
+</form><br>
+
+<button class="btn"><a href="{% url 'edit_subjects' %}">
+    Добавление предмета</a>
+</button>
+
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>#</th>
+        <th>Предмет</th>
+    </tr>
+    </thead>
+    <tbody>
+        {% for subject in subjects %}
+            <tr>
+                <th scope="row">{{subject.id}}</th>
+                <td>{{subject.name}}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

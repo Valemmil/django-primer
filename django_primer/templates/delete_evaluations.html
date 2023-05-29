@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Редактор оценок
+{% endblock %}
+
+{% block title2 %}
+Редактор оценок
+{% endblock %}
+
+{% block body %}
+            <form method="post">
+                {% csrf_token %}
+                {{ form.student }}<br>
+                {{ form.subject }}<br>
+                <button type="submit" class="btn btn-danger">Удалить оценку</button>
+            </form><br>
+
+            <button class="btn"><a href="{% url 'edit_evaluations' %}">
+                Добавление оценки</a>
+            </button>
+
+            <button class="btn">
+                <a href="{% url 'redact_evaluations' %}">Изменение оценки</a>
+            </button>
+
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>ФИО</th>
+                    <th>Предмет</th>
+                    <th>Оценка</th>
+                </tr>
+                </thead>
+                <tbody>
+                    {% for score in students_scores %}
+                        <tr>
+                            <th scope="row">{{score.id}}</th>
+                            <td>{{score.student.fio}}</td>
+                            <td>{{score.subject.name}}</td>
+                            <td>{{score.value}}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+{% endblock %}

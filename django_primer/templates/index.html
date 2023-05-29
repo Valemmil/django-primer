@@ -1,34 +1,14 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="utf-8" />
-		<title>Главная</title>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-	</head>
-	<body>
-        <div class="container">
-            <h1 style="text-align:center;">Успеваемость студентов</h1>
+{% extends 'base.html' %}
 
-            <form style="text-align:center;">
-                <button class="btn"><a href="{% url 'home' %}">
-                    Главная
-                </a></button>
+{% block title %}
+Главная
+{% endblock %}
 
-                <button class="btn"><a href="{% url 'edit_evaluations' %}">
-                    Редактор оценок
-                </a></button>
+{% block title2 %}
+Успеваемость студентов
+{% endblock %}
 
-                <button class="btn"><a href="{% url 'edit_subjects' %}">
-                    Редактор предметов
-                </a></button>
-
-                <button class="btn"><a href="{% url 'edit_students' %}">
-                    Редактор студентов
-                </a></button>
-            </form><br>
-
+{% block body %}
             <table class="table table-striped">
                 <thead>
                 <tr>
@@ -53,6 +33,4 @@
                     {% endfor %}
                 </tbody>
             </table>
-        </div>
-	</body>
-</html>
+{% endblock %}

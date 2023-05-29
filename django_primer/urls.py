@@ -16,12 +16,18 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from .views import IndexView, EditSubject, EditEvaluations, EditStudent
+from .views import IndexView, EditSubject, EditEvaluations, EditStudent, DeleteEvaluations, RedactEvaluations, \
+    DeleteSubject, DeleteStudent, RedactStudent
 
 urlpatterns = [
     path('', IndexView.as_view(), name='home'),
     path('admin/', admin.site.urls),
     path('edit_students', EditStudent.as_view(), name='edit_students'),
+    path('delete_students', DeleteStudent.as_view(), name='delete_students'),
+    path('redact_students', RedactStudent.as_view(), name='redact_students'),
     path('edit_subjects', EditSubject.as_view(), name='edit_subjects'),
+    path('delete_subjects', DeleteSubject.as_view(), name='delete_subjects'),
     path('edit_evaluations', EditEvaluations.as_view(), name='edit_evaluations'),
+    path('delete_evaluations', DeleteEvaluations.as_view(), name='delete_evaluations'),
+    path('redact_evaluations', RedactEvaluations.as_view(), name='redact_evaluations'),
 ]
