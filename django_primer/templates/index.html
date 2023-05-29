@@ -35,8 +35,9 @@
                   <th>#</th>
                   <th>ФИО</th>
                     {% for subject in subjects %}
-                      <th>{{subject}}</th>
+                        <th>{{subject}}</th>
                     {% endfor %}
+                  <th>Сред.</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -47,6 +48,7 @@
                              {% for score in statistics.scores %}
                                 <td>{{score}}</td>
                               {% endfor %}
+                            <td>{{statistics.avg}}</td>
                         </tr>
                     {% endfor %}
                 </tbody>

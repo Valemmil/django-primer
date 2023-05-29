@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from collections import defaultdict
+from statistics import fmean
 from django.views.generic.base import TemplateView
 from .models import Score, Student, Subject
 from .forms import StudentForm, ScoreForm, SubjectForm
@@ -24,7 +25,8 @@ class IndexView(TemplateView):
         student_statistics = [
             {
                 'student': student,
-                'scores': [f'{scores[subject]:.1f}' for subject in subjects]
+                'scores': [f'{scores[subject]:.1f}' for subject in subjects],
+                'avg': fmean([scores[subject] for subject in subjects])
             }
             for student, scores in student_scores.items()
         ]
